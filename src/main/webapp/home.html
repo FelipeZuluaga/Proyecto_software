@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gestión de Inventarios</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #d1d5db; /* Texto en gris claro */
+            line-height: 1.6;
+            background-color: #1e293b; /* Fondo principal oscuro */
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header */
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #334155; /* Azul oscuro */
+            color: #d1d5db;
+            padding: 10px 20px;
+        }
+
+        .main-header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: #d1d5db;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            background-color: #475569; /* Azul intermedio */
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: #1e293b; /* Fondo oscuro */
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: #60a5fa; /* Azul claro */
+        }
+
+        .hero p {
+            margin: 20px 0;
+            font-size: 1.2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: #60a5fa; /* Azul claro */
+            color: #1e293b; /* Texto oscuro */
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #3b82f6; /* Azul intermedio */
+        }
+
+        .btn-secondary {
+            background-color: #475569; /* Azul intermedio oscuro */
+        }
+
+        .btn-secondary:hover {
+            background-color: #1e40af; /* Azul más oscuro */
+        }
+
+        /* Features Section */
+        .features {
+            padding: 50px 20px;
+            background-color: #334155; /* Azul oscuro */
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 2rem;
+            color: #60a5fa; /* Azul claro */
+            margin-bottom: 30px;
+        }
+
+        .feature-list {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .feature {
+            max-width: 300px;
+            padding: 20px;
+            border: 1px solid #475569; /* Bordes azul oscuro */
+            border-radius: 10px;
+            background-color: #1e293b; /* Fondo oscuro */
+        }
+
+        .feature h3 {
+            color: #60a5fa; /* Azul claro */
+        }
+
+        /* Footer */
+        .main-footer {
+            background-color: #334155; /* Azul oscuro */
+            color: #d1d5db; /* Texto gris claro */
+            text-align: center;
+            padding: 10px 0;
+            font-size: 0.9rem;
+        }
+
+    </style>
+    <body>
+        <header class="main-header">
+            <div class="logo">Gestión de Inventarios</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#features">Características</a></li>
+                    <li><a href="Login.html">Iniciar Sesión</a></li>
+                    <li><a href="#register">Registrarse</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section class="hero">
+                <h1>¡Simplifica la gestión de tu inventario!</h1>
+                <p>Administra tus compras y ventas, controla el stock de tus productos y mejora la eficiencia de tu negocio desde una única plataforma.</p>
+                <div class="cta-buttons">
+                    <a href="Login.html" class="btn">Iniciar Sesión</a>
+                    <a href="#register" class="btn btn-secondary">Registrarse</a>
+                </div>
+            </section>
+            <section id="features" class="features">
+                <h2>¿Qué puedes hacer?</h2>
+                <div class="feature-list">
+                    <div class="feature">
+                        <h3>Gestión de Compras</h3>
+                        <p>Registra todas tus compras y asegura que tu stock esté siempre actualizado.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>Gestión de Ventas</h3>
+                        <p>Monitorea tus ventas y genera reportes detallados para entender mejor tu negocio.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>Control de Inventario</h3>
+                        <p>Consulta el stock disponible en tiempo real y recibe alertas cuando sea necesario reabastecer.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="main-footer">
+            <p>&copy; 2024 Gestión de Inventarios. Todos los derechos reservados.</p>
+        </footer>
+    </body>
+</html>
+

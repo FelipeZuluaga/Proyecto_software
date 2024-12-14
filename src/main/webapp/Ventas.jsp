@@ -12,70 +12,89 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <style>
-         
-            td{
-                border: ridge
+            /* Fondo oscuro igual al login.jsp */
+            body {
+                background-color: #2a2e3f;
+                color: #ffffff; /* Texto blanco */
+                font-family: 'Arial', sans-serif;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                height: 100vh;
             }
-            .sesion{
-                background-color:  #193d72;
+            .container {
+                width: 80%;
+                margin: auto;
+                padding: 20px;
+                background-color: #3c3f51;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             }
-            h3{
-                color:  white;
+            .table {
+                background-color: #2a2e3f;
+                color: #ffffff;
+                border-radius: 10px;
             }
-            .table{
-                text-align:center;     
+            thead {
+                background-color: #4b67a1;
+                color: #ffffff;
             }
-            thead{
-                background: #b7c0c3;
-                color: black;
+            .btn-primary {
+                background-color: #4b67a1;
+                border: none;
+                border-radius: 20px;
             }
-            .barra{
-                background: #193d72;
+            .btn-primary:hover {
+                background-color: #375283;
+            }
+            .btn-outline-info,
+            .btn-outline-danger {
+                border-radius: 20px;
+            }
+            .modal-content {
+                background-color: #3c3f51;
+                color: #ffffff;
+            }
+            /* Estilo para el banner superior */
+            .banner {
+                width: 100%;
+                background-color: #4b67a1;
+                padding: 10px 0;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            .banner .btn {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+            /* Navbar */
+            nav {
+                width: 100%;
+                background-color: #4b67a1;
+                padding: 10px 0;
+            }
+            nav a {
                 color: white;
+                margin: 0 15px;
+                text-decoration: none;
+                font-weight: bold;
             }
-            .modal-footer{
-                background-color: #193d72;
+            nav a:hover {
+                text-decoration: underline;
             }
-            center{
-                background:  #333333;
-                color: white;
-            }
-        </style>   
+        </style>     
+ 
 
 
         <title>Ventas</title>
 
     </head>
     <body >
-        <%
-            Usuario u = (Usuario) session.getAttribute("usr");
-            if (u != null) {
-        %>
         <!-- Sidebar -->
         <jsp:include page="menu.jsp"/>
         <div class="container-fluid " ng-app="ventas" ng-controller="ventasController as v">
-            <div  class="row">
-                <div class="col-8">
-                </div>
-                <div class="sesion col-4" >
-                        <div class=" row">
-                            <div class="col-6">
-                                <h3><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                                    </svg> <%=u.getNombreDeUsuario()%></h3>
-                            </div>
-                            <div class="col-6">
-                                <button type="button" class="btn btn-outline-info"   ng-click="v.cerrarSesion()">Cerrar Session
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-                                    <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-                                    </svg>
-                                </button> 
-                            </div>
-                        </div>
-                    </div>
-            </div>
+            
             <!-- Page Content -->
                 <div class="row">
                     <div class="col-12 mt-5">
@@ -85,7 +104,7 @@
                                     <th scope="col" colspan="7" ><h3>VENTA DE PRODUCTOS</h3></th>
                                     <th scope="col" >
                                         <a data-toggle="modal" data-target="#modalGuardar">
-                                            <button class="btn btn-primary">Hacer Venta</button>
+                                            <button class="btn btn-secondary">Hacer Venta</button>
                                         </a>
 
                                     </th>
@@ -148,7 +167,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <label><h6>Numero Factura</h6></label>
-                                        <input class="form-control" type="Number"  disabled="" placeholder="Numero Factura"  ng-model="v.numFactura">
+                                        <input class="form-control" type="Number"  placeholder="Numero Factura"  ng-model="v.numFactura">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -168,8 +187,8 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#modalEliminar" >eliminar</button>
-                                <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#modalActualizar" >Actualizar</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" >Eliminar</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" >Actualizar</button>
                             </div>
                         </div>  
                     </div>
@@ -196,7 +215,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <label><h6>Numero Factura</h6></label>
-                                        <input class="form-control" type="Number" placeholder="Numero Factura"  disabled="" ng-model="v.numFactura">
+                                        <input class="form-control" type="Number" placeholder="Numero Factura"   ng-model="v.numFactura">
                                     </div>
                                     
                                 </div>
@@ -218,8 +237,8 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-warning" data-dismiss="modal" ng-click="v.guardar()">Vender</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="v.guardar()">Vender</button>
                             </div>
                         </div>
                     </div>
@@ -501,12 +520,6 @@
 
 
         </script>
-        <%
-        } else {%>
-    <center><a href="Login.html"><h2>No se ha iniciado sesion o la sesion caduco,Click aca para ingresar</h2></a></center>     
-
-    <%      }
-    %>
 </body> 
 
 </html>

@@ -19,122 +19,127 @@
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <title>Productos</title>
 
-         <style>
-         
-            td{
-                border: ridge
+        <style>
+            /* Fondo oscuro igual al login.jsp */
+            body {
+                background-color: #2a2e3f;
+                color: #ffffff; /* Texto blanco */
+                font-family: 'Arial', sans-serif;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                height: 100vh;
             }
-            .sesion{
-                background-color:  #193d72;
+            .container {
+                width: 80%;
+                margin: auto;
+                padding: 20px;
+                background-color: #3c3f51;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             }
-            h3{
-                color:  white;
+            .table {
+                background-color: #2a2e3f;
+                color: #ffffff;
+                border-radius: 10px;
             }
-            .table{
-                text-align:center;     
+            thead {
+                background-color: #4b67a1;
+                color: #ffffff;
             }
-            thead{
-                background: #b7c0c3;
-                color: black;
+            .btn-primary {
+                background-color: #4b67a1;
+                border: none;
+                border-radius: 20px;
             }
-            .barra{
-                background: #193d72;
+            .btn-primary:hover {
+                background-color: #375283;
+            }
+            .btn-outline-info,
+            .btn-outline-danger {
+                border-radius: 20px;
+            }
+            .modal-content {
+                background-color: #3c3f51;
+                color: #ffffff;
+            }
+            /* Estilo para el banner superior */
+            .banner {
+                width: 100%;
+                background-color: #4b67a1;
+                padding: 10px 0;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            .banner .btn {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+            /* Navbar */
+            nav {
+                width: 100%;
+                background-color: #4b67a1;
+                padding: 10px 0;
+            }
+            nav a {
                 color: white;
+                margin: 0 15px;
+                text-decoration: none;
+                font-weight: bold;
             }
-            .modal-footer{
-                background-color: #193d72;
-            }
-            center{
-                background:  #333333;
-                color: white;
+            nav a:hover {
+                text-decoration: underline;
             }
         </style>    
     </head>
     <body >
-        <%
-            Usuario u = (Usuario) session.getAttribute("usr");
-            if (u != null) {
-        %>
         <div  ng-app="productos" ng-controller="productosController as p">
 
-            <!-- Sidebar -->
-            <!-- Sidebar -->
+           <!-- Sidebar -->
             <jsp:include page="menu.jsp"/>
-            <!-- Page Content -->
-            <div >
-                <div  class="row">
-                    <div class="col-8">
-                    </div>
-                    <div class="sesion col-4" >
-                        <div class=" row">
-                            <div class="col-6">
-                                <h3><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                                    </svg> <%=u.getNombreDeUsuario()%></h3>
-                            </div>
-                            <div class="col-6">
-                                <button type="button" class="btn btn-outline-info"   ng-click="p.cerrarSesion()">Cerrar Session
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-                                    <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+            <!-- Contenedor de productos -->
+            <div class="container">
+                <h3 class="text-center mb-4">Gestión de Productos</h3>
+                <th scope="col">
+                    <a data-toggle="modal" data-target="#modalGuardar">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+                        <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
+                        <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                        </svg>
+                    </a>
+
+                </th>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Stock</th>
+                            <th>Precio</th>
+                            <th>Proveedor</th>
+                            <th>Descripción</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="pro in p.Productos">
+                            <td>{{pro.nombreProducto}}</td>
+                            <td>{{pro.Stop}}</td>
+                            <td>{{pro.precioProducto}}</td>
+                            <td>{{pro.provedor.nombreProvedorPk}}</td>
+                            <td>{{pro.descripcion}}</td>
+                            <td>
+                                <a  ng-click="p.editar(pro.idProducto)" data-toggle="modal" data-target="#modalEditar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                                     </svg>
-                                </button> 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-               
-                <div class="row container-fluid">
-                    <div class="col-12 mt-5">
-
-                        <table class="table table-striped">
-                            <thead >
-                                <tr class="barra">
-                                    <th scope="col" colspan="5"><h3>IVENTARIO DE PRODUCTOS</h3></th>
-                                    <th scope="col">
-                                        <a data-toggle="modal" data-target="#modalGuardar">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
-                                            <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
-                                            <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                                            </svg>
-                                        </a>
-
-                                    </th>
-                                </tr>
-                                <tr>
-                                    
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Stop</th>
-                                    <th scope="col">Precio</th>
-                                    <th scope="col">Provedor</th>
-                                    <th scope="col">Descripcion</th>
-                                    <th scope="col">Acciones</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="pro in p.Productos">
-
-                                    
-                                    <td>{{pro.nombreProducto}}</td>
-                                    <td>{{pro.Stop}}</td>
-                                    <td>{{pro.precioProducto}}</td>
-                                    <td>{{pro.provedor.nombreProvedorPk}}</td>
-                                    <td>{{pro.descripcion}}</td>
-                                    <td>
-                                        <a  ng-click="p.editar(pro.idProducto)" data-toggle="modal" data-target="#modalEditar">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                                            </svg>
-                                        </a>    
-                                    </td>    
-                                </tr>         
-                            </tbody>    
-                        </table>
-                    </div>
-                </div>
+                                </a>    
+                            </td> 
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <!-- Modal editar-->
             <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="editarModalLabel" aria-hidden="true">
@@ -150,36 +155,36 @@
                             <div class="row">
                                 <div class="col-4">
                                     <label>Id</label>
-                                    <input class="form-control" type="number" disabled="" ng-model="p.Producto.idProducto">
+                                    <input class="form-control" type="number" style="color: black;" disabled="" ng-model="p.Producto.idProducto">
                                 </div>
                                 <div class="col-8">
                                     <label>Nombre </label>
-                                    <input class="form-control" type="text"  ng-model="p.Producto.nombreProducto">
+                                    <input class="form-control" type="text"  style="color: black;" ng-model="p.Producto.nombreProducto">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-6">
                                     <label>Stop</label>
-                                    <input class="form-control" type="number" ng-model="p.Producto.Stop">
+                                    <input class="form-control" type="number" style="color: black;" ng-model="p.Producto.Stop">
                                 </div>
                                 <div class="col-6">
                                     <label>Precio</label>
-                                    <input class="form-control" type="number"  ng-model="p.Producto.precioProducto">
+                                    <input class="form-control" type="number"  style="color: black;" ng-model="p.Producto.precioProducto">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-8">
                                     <label>Descripción</label>
-                                    <textarea class="form-control" type="text"  ng-model="p.Producto.descripcion"></textarea>
+                                    <textarea class="form-control" type="text" style="color: black;" ng-model="p.Producto.descripcion"></textarea>
                                 </div>
                                 <div class="col-4">
                                     <label>Provedor</label>
-                                    <input class="form-control" type="number" disabled="" ng-model="p.Producto.Provedor">
+                                    <input class="form-control" type="number" style="color: black;" disabled="" ng-model="p.Producto.Provedor">
                                 </div>    
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#modalEliminar" >eliminar</button>
+                            <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#modalEliminar" >Eliminar</button>
                             <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#modalActualizar" >Actualizar</button>
                         </div>
                     </div>  
@@ -198,7 +203,7 @@
                         <div class="modal-body">
 
                             <div class="row">
-                                
+
                                 <div class="col-12">
                                     <label>Nombre</label>
                                     <input class="form-control" type="text" ng-model="p.nombreProducto">
@@ -349,7 +354,7 @@
                                     text: "!Exitoso!",
                                     icon: "success"
                                 });
-                            p.listar();    
+                                p.listar();
                             } else {
                                 swal({
                                     title: "Fallo la Compra !",
@@ -388,7 +393,7 @@
                     }).then(function (res) {
                         p.Producto = res.data.Producto;
                     });
-                     p.listar();
+                    p.listar();
                 };
                 p.actualizar = function () {
                     var parametros = {
@@ -447,13 +452,7 @@
                 };
                 p.listar();
             }
-        </script>
-        <%
-        } else {%>
-     <center><a href="Login.html"><h2>No se ha iniciado sesion o la sesion caduco,Click aca para ingresar</h2></a></center>     
-
-    <%      }
-    %>
-</body>
+        </script>    
+    </body>
 </html> 
 
