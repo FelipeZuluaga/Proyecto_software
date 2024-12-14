@@ -1,0 +1,6 @@
+logica\Producto.class
+logica\Compras.class
+logica\Usuario.class
+logica\Provedores.class
+logica\Ventas.class
+persistencia\ConexionBD.class
